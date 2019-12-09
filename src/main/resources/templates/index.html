@@ -1,0 +1,555 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.w3.org/1999/XSL/Transform">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Home</title>
+<link href="../static/css/bootstrap1.css" rel='stylesheet' type='text/css' />
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<!-- Custom Theme files -->
+<link href="../static/css/style.css" rel='stylesheet' type='text/css' />
+<!-- Custom Theme files -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Hotel Deluxe Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!--webfont-->
+<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+<script type="text/javascript" src="../static/js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="../static/js/login.js"></script>
+<script src="../static/js/jquery.easydropdown.js"></script>
+<!--Animation-->
+<script src="../static/js/wow.min.js"></script>
+<link href="../static/css/animate.css" rel='stylesheet' type='text/css' />
+<script>
+	new WOW().init();
+</script>
+</head>
+<body>
+<div class="header">
+		   <div class="col-sm-8 header-left">
+					 <div class="logo">
+						<a href="/login/"><img src="../static/img/logo.png" alt=""/></a>
+					 </div>
+					 <div class="menu">
+						  <a class="toggleMenu" href="#"><img src="../static/img/nav.png" alt="" /></a>
+						    <ul class="nav" id="nav">
+						    	<li class="active"><a href="/index">首页</a></li>
+						    	<li><a href="hotels_display.html" th:href="@{/hotels_display}">酒店信息</a></li>
+								<li><a href="/books_display/now">当前订单</a></li>
+								<li><a href="/books_display">全部订单</a></li>
+						    	<li><a href="/personal_info">信息管理</a></li>
+								<div class="clearfix"></div>
+							</ul>
+							<script type="text/javascript" src="../static/js/responsive-nav.js"></script>
+				    </div>
+	    	    </div>
+	            <div class="col-sm-4 header_right">
+
+					<p th:if="${session.user_tel}"><span th:text="'Welcome,'+${session.user_name}"></span><br><a href="/logout/">退出登录</a></p>
+	    		      <div th:if="${session.user_tel}==null" id="loginContainer"><a href="/login/" class="link"><img src="../static/img/login.png">登录</a>
+
+			             </div>
+					<!--<br>
+					<div th:switch="${session.user_tel}">
+
+						<p th:case="null"><a href="/login/" class="link"><img src="../static/img/login.png">登录</a></p>
+						<p th:case="'1'"><span th:text="'Welcome,'+${session.user_name}">???</p>
+						<div class="clearfix"></div>
+
+					</div>
+-->
+
+
+	                 </div>
+	                <div class="clearfix"></div>
+   </div>
+   <div class="banner">
+   	  <div class="container_wrap">
+   		<h1>酒店查询</h1>
+	  <form method="post" action="/hotels_display">
+		  <input type="text" name="hotel_city" value="目的地" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '目的地';}"><br>
+
+		  		<font color="white">入住</font>
+		  		<input type="date" value="入住时间" id="checkinDate"/>
+		  		<font color="white">退房</font>
+		  		<input type="date" value="退房时间" id="checkoutDate"/>
+				<br>
+				<input type="text"  name="hotel_name" value="关键字（酒店名），..." onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '关键字（酒店名），...';}">
+			    <div class="contact_btn">
+	               <label class="btn1 btn-2 btn-2g"><input name="submit" type="submit" id="submit" value="查询"></label>
+	            </div>
+	  </form>
+   		    <div class="clearfix"></div>
+         </div>
+   </div>
+
+
+   <div class="content_middle">
+   	  <div class="container">
+   	    <div class="content_middle_box">
+          <div class="top_grid">
+   			<div class="col-md-3 index-grids">
+   			  <div class="grid1">
+   				<div class="view view-first">
+                  <div class="index_img"><img src="../static/img/pic1.jpg" class="img-responsive" alt=""/></div>
+   				    <div class="sale">$2.980</div>
+   			          <div class="mask">
+                        <div class="info">
+							<i class="search"> </i> 展示更多信息
+						</div>
+                        <ul class="mask_img">
+                        	<li class="star"><img src="../static/img/star.png" alt=""/></li>
+                        	<li class="set"><img src="../static/img/set.png" alt=""/></li>
+                        	<div class="clearfix"> </div>
+                        </ul>
+                       </div>
+                   </div> 
+                   <i class="home"></i>
+   				 <div class="inner_wrap">
+					 <form method="post" action="/rooms_display" name="form_to_post">
+						 <h3>位于集美区的黄金地段</h3>
+   				 			<ul class="star1">
+   				 			  <h4 class="green">华侨大学宾馆</h4>
+								<button type="submit" style="float: right;background-color: orange;color: #FFFFFF;-webkit-border-radius: 4px;-moz-border-radius: 4px;display: inline-block">详情</button>
+   				 			  <li><a href="#"> <img src="../static/img/star1.png" alt="">(236)</a></li>
+   				 			</ul>
+						 <input name="hotel_id" value="000001" hidden="hidden"/>
+					 </form>
+   				 </div>
+   			   </div>
+   			</div>
+   			<div class="col-md-3 index-grids">
+   			  <div class="grid1">
+   				<div class="view view-first">
+                  <div class="index_img1"><img src="../static/img/pic6.jpg" class="img-responsive" alt=""/></div>
+   				     <div class="mask">
+                        <div class="info"><i class="search"> </i> 展示更多信息</div>
+                        <ul class="mask_img">
+                        	<li class="star"><img src="../static/img/star.png" alt=""/></li>
+                        	<li class="set"><img src="../static/img/set.png" alt=""/></li>
+                        	<div class="clearfix"> </div>
+                        </ul>
+                      </div>
+                  </div> 
+                 <i class="home1"> </i>
+   				 <div class="inner_wrap">
+					 <form method="post" action="/rooms_display" name="form_to_post">
+   				 	<h3>口碑极佳的厦门酒店</h3>
+   				 	<ul class="star1">
+   				 	  <h4 class="yellow">小南旅馆</h4>
+						<button type="submit" style="float: right;background-color: orange;color: #FFFFFF;-webkit-border-radius: 4px;-moz-border-radius: 4px;display: inline-block">详情</button>
+   				 	  <li><a href="#"> <img src="../static/img/star2.png" alt="">(136)</a></li>
+   				 	</ul>
+						 <input name="hotel_id" value="000003" hidden="hidden"/>
+					 </form>
+   				 </div>
+   			   </div>
+   			</div>
+   			<div class="col-md-3 index-grids">
+   			  <div class="grid1">
+   				<div class="view view-first">
+                  <div class="index_img2"><img src="../static/img/pic2.jpg" class="img-responsive" alt=""/></div>
+   				     <div class="mask">
+                        <div class="info"><i class="search"> </i> 展示更多信息</div>
+                        <ul class="mask_img">
+                        	<li class="star"><img src="../static/img/star.png" alt=""/></li>
+                        	<li class="set"><img src="../static/img/set.png" alt=""/></li>
+                        	<div class="clearfix"> </div>
+                        </ul>
+                      </div>
+                  </div> 
+                 <i class="home2"> </i>
+   				 <div class="inner_wrap">
+					 <form method="post" action="/rooms_display" name="form_to_post">
+   				 	<h3>观光游客前往成都的理想下榻之处</h3>
+   				 	<ul class="star1">
+   				 	  <h4 class="blue">7天酒店</h4>
+						<button type="submit" style="float: right;background-color: orange;color: #FFFFFF;-webkit-border-radius: 4px;-moz-border-radius: 4px;display: inline-block">详情</button>
+   				 	  <li><a href="#"> <img src="../static/img/star2.png" alt="">(136)</a></li>
+   				 	</ul>
+						 <input name="hotel_id" value="000004" hidden="hidden"/>
+					 </form>
+   				 </div>
+   			   </div>
+   			</div>
+   			<div class="col-md-3 index-grids">
+   			  <div class="grid1">
+   				<div class="view view-first">
+                  <div class="index_img"><img src="../static/img/pic3.jpg" class="img-responsive" alt=""/></div>
+   				     <div class="sale">$2.980</div>
+   			          <div class="mask">
+                      <div class="info"><i class="search"> </i> 展示更多信息</div>
+                        <ul class="mask_img">
+                        	<li class="star"><img src="../static/img/star.png" alt=""/></li>
+                        	<li class="set"><img src="../static/img/set.png" alt=""/></li>
+                        	<div class="clearfix"> </div>
+                        </ul>
+                      </div>
+                  </div> 
+                  <i class="home"></i>
+   				  <div class="inner_wrap">
+					  <form method="post" action="/rooms_display" name="form_to_post">
+   				 	<h3>完美住宿选择</h3>
+   				 	<ul class="star1">
+   				 	  <h4 class="green">利利顺宾馆</h4>
+						<button type="submit" style="float: right;background-color: orange;color: #FFFFFF;-webkit-border-radius: 4px;-moz-border-radius: 4px;display: inline-block">详情</button>
+   				 	  <li><a href="#"> <img src="../static/img/star1.png" alt="">(236)</a></li>
+   				 	</ul>
+						  <input name="hotel_id" value="000005" hidden="hidden"/>
+					  </form>
+   				  </div>
+   			   </div>
+   			</div>
+   			<div class="clearfix"> </div>
+   		</div>
+   	    <div class="middle_grid wow fadeInUp" data-wow-delay="0.4s">
+   			<div class="col-md-6 index-grids">
+   			   <div class="grid1">
+   			     <div class="index_img"><img src="../static/img/pic4.jpg" class="img-responsive" alt=""/></div>
+   				  <i class="m_home"> </i>
+                  <ul class="vision">
+                  	 <li>天郎锦城艺术酒店</li>
+                  	 <li class="desc"><a href="#"> <img src="../static/img/star1.png" alt="">(236)</a></li>
+                  </ul>
+   				  <div class="inner_wrap1">
+   				 	<ul class="item_module">
+   				 	 	<li class="module_left"><img src="../static/img/m1.jpg" class="img-responsive" alt=""/></li>
+   				 	 	<li class="module_right">
+   				 	 		<img src="../static/img/m_star.png" class="img-responsive" alt=""/>
+   				 	 		<h5>刘能</h5>
+   				 	 		<p>用过这么多酒店系统，QQ酒店预订系统真是让我惊艳到了，给一个五星好评！！！</p>
+   				 	 		<!--<a href="single.html" class="content_btn">....了解更多</a>-->
+   				 	 	</li>
+   				 	 	<div class="clearfix"> </div>
+   				 	 </ul>
+   				  </div>
+   			   </div>
+   			</div>
+   			<div class="col-md-6 index-grids">
+   			   <div class="grid1">
+   			     <div class="index_img1"><img src="../static/img/pic5.jpg" class="img-responsive" alt=""/></div>
+   				  <i class="m_home1"> </i>
+                  <ul class="vision">
+                  	 <li>三迪华美达广场酒店</li>
+                  	 <li class="desc"><a href="#"> <img src="../static/img/star2.png" alt="">(236)</a></li>
+                  </ul>
+   				  <div class="inner_wrap1">
+   				 	<ul class="item_module">
+   				 	 	<li class="module_left"><img src="../static/img/m2.jpg" class="img-responsive" alt=""/></li>
+   				 	 	<li class="module_right">
+   				 	 		<img src="../static/img/m_star1.png" class="img-responsive" alt=""/>
+   				 	 		<h5>赵四</h5>
+   				 	 		<p>QQ总体来说还是不错的，唯一的不足就是使用起来太方便了，都快失去生活自理能力了。。</p>
+   				 	 		<!--<a href="single.html" class="content_btn">....了解更多</a>-->
+   				 	 	</li>
+   				 	 	<div class="clearfix"> </div>
+   				 	 </ul>
+   				  </div>
+   			   </div>
+   			</div>
+   			<div class="clearfix"> </div>
+   		</div>
+   		<div class="top_grid wow fadeInRight" data-wow-delay="0.4s">
+   			<div class="col-md-3 index-grids">
+   			  <div class="grid1">
+   				<div class="view view-first">
+                  <div class="index_img"><img src="../static/img/pic1.jpg" class="img-responsive" alt=""/></div>
+   				     <div class="sale">$2.980</div>
+   			          <div class="mask">
+                       <div class="info"><i class="search"> </i> 展示更多信息</div>
+                        <ul class="mask_img">
+                        	<li class="star"><img src="../static/img/star.png" alt=""/></li>
+                        	<li class="set"><img src="../static/img/set.png" alt=""/></li>
+                        	<div class="clearfix"> </div>
+                        </ul>
+                        </div>
+                    </div> 
+                    <i class="home"></i>
+   				 <div class="inner_wrap">
+					 <form method="post" action="/rooms_display" name="form_to_post">
+   				 	<h3>口碑极佳</h3>
+   				 	<ul class="star1">
+   				 	  <h4 class="green">厦门喜来登酒店</h4>
+						<button type="submit" style="float: right;background-color: orange;color: #FFFFFF;-webkit-border-radius: 4px;-moz-border-radius: 4px;display: inline-block">详情</button>
+   				 	  <li><a href="#"> <img src="../static/img/star1.png" alt="">(236)</a></li>
+   				 	</ul>
+					 <input name="hotel_id" value="000009" hidden="hidden"/>
+					 </form>
+   				 </div>
+   			   </div>
+   			</div>
+   			<div class="col-md-3 index-grids">
+   			  <div class="grid1">
+   				<div class="view view-first">
+                  <div class="index_img1"><img src="../static/img/pic2.jpg" class="img-responsive" alt=""/></div>
+   				     <div class="mask">
+                        <div class="info"><i class="search"> </i> 展示更多信息</div>
+                        <ul class="mask_img">
+                        	<li class="star"><img src="../static/img/star.png" alt=""/></li>
+                        	<li class="set"><img src="../static/img/set.png" alt=""/></li>
+                        	<div class="clearfix"> </div>
+                        </ul>
+                      </div>
+                  </div> 
+                 <i class="home1"> </i>
+   				 <div class="inner_wrap">
+					 <form method="post" action="/rooms_display" name="form_to_post">
+   				 	<h3>地理位置便捷</h3>
+   				 	<ul class="star1">
+   				 	  <h4 class="yellow">望江宾馆</h4>
+						<button type="submit" style="float: right;background-color: orange;color: #FFFFFF;-webkit-border-radius: 4px;-moz-border-radius: 4px;display: inline-block">详情</button>
+   				 	  <li><a href="#"> <img src="../static/img/star2.png" alt="">(136)</a></li>
+   				 	</ul>
+						 <input name="hotel_id" value="000010" hidden="hidden"/>
+					 </form>
+   				 </div>
+   			   </div>
+   			</div>
+   			<div class="col-md-3 index-grids">
+   			  <div class="grid1">
+   				<div class="view view-first">
+                  <div class="index_img2"><img src="../static/img/pic6.jpg" class="img-responsive" alt=""/></div>
+   				     <div class="mask">
+                        <div class="info"><i class="search"> </i> 展示更多信息</div>
+                        <ul class="mask_img">
+                        	<li class="star"><img src="../static/img/star.png" alt=""/></li>
+                        	<li class="set"><img src="../static/img/set.png" alt=""/></li>
+                        	<div class="clearfix"> </div>
+                        </ul>
+                      </div>
+                  </div> 
+                 <i class="home2"> </i>
+   				 <div class="inner_wrap">
+					 <form method="post" action="/rooms_display" name="form_to_post">
+   				 	<h3>完美住宿选择</h3>
+   				 	<ul class="star1">
+   				 	  <h4 class="blue">久宜祥酒店</h4>
+						<button type="submit" style="float: right;background-color: orange;color: #FFFFFF;-webkit-border-radius: 4px;-moz-border-radius: 4px;display: inline-block">详情</button>
+   				 	  <li><a href="#"> <img src="../static/img/star2.png" alt="">(136)</a></li>
+   				 	</ul>
+						 <input name="hotel_id" value="000012" hidden="hidden"/>
+					 </form>
+   				 </div>
+   			   </div>
+   			</div>
+   			<div class="col-md-3 index-grids">
+   			  <div class="grid1">
+   				<div class="view view-first">
+                  <div class="index_img"><img src="../static/img/pic3.jpg" class="img-responsive" alt=""/></div>
+   				     <div class="sale">$2.980</div>
+   			          <div class="mask">
+                      <div class="info"><i class="search"> </i> 展示更多信息</div>
+                        <ul class="mask_img">
+                        	<li class="star"><img src="../static/img/star.png" alt=""/></li>
+                        	<li class="set"><img src="../static/img/set.png" alt=""/></li>
+                        	<div class="clearfix"> </div>
+                        </ul>
+                      </div>
+                  </div> 
+                  <i class="home"></i>
+   				  <div class="inner_wrap">
+					  <form method="post" action="/rooms_display" name="form_to_post">
+   				 	<h3>酒店设施一应俱全</h3>
+   				 	<ul class="star1">
+   				 	  <h4 class="green">川投国际酒店</h4>
+						<button type="submit" style="float: right;background-color: orange;color: #FFFFFF;-webkit-border-radius: 4px;-moz-border-radius: 4px;display: inline-block">详情</button>
+   				 	  <li><a href="#"> <img src="../static/img/star1.png" alt="">(236)</a></li>
+   				 	</ul>
+						  <input name="hotel_id" value="000013" hidden="hidden"/>
+					  </form>
+   				  </div>
+   			   </div>
+   			</div>
+   			<div class="clearfix"> </div>
+   		</div>
+   		<div class="bottom_grid wow bounce" data-wow-delay="0.4s">
+   		  <div class="col-md-6 index-grids">
+   			   <div class="grid1">
+   			     <div class="index_img1"><img src="../static/img/pic5.jpg" class="img-responsive" alt=""/></div>
+   				  <i class="m_home1"> </i>
+                  <ul class="vision">
+                  	 <li>成都香格里拉大酒店</li>
+                  	 <li class="desc"><a href="#"> <img src="../static/img/star2.png" alt="">(236)</a></li>
+                  </ul>
+   				  <div class="inner_wrap1">
+   				 	<ul class="item_module">
+   				 	 	<li class="module_left"><img src="../static/img/m3.jpg" class="img-responsive" alt=""/></li>
+   				 	 	<li class="module_right">
+   				 	 		<img src="../static/img/m_star.png" class="img-responsive" alt=""/>
+   				 	 		<h5>谢广坤</h5>
+   				 	 		<p>不得不说，QQ真是良心的好网站，国民骄傲，中国力量</p>
+   				 	 		<!--<a href="single.html" class="content_btn">....了解更多</a>-->
+   				 	 	</li>
+   				 	 	<div class="clearfix"> </div>
+   				 	 </ul>
+   				  </div>
+   			   </div>
+   			</div>
+   			<div class="col-md-3 index-grids">
+   			  <div class="grid1">
+   				<div class="view view-first">
+                  <div class="index_img"><img src="../static/img/pic3.jpg" class="img-responsive" alt=""/></div>
+   				     <div class="sale">$2.980</div>
+   			          <div class="mask">
+                      <div class="info"><i class="search"> </i> 展示更多信息</div>
+                        <ul class="mask_img">
+                        	<li class="star"><img src="../static/img/star.png" alt=""/></li>
+                        	<li class="set"><img src="../static/img/set.png" alt=""/></li>
+                        	<div class="clearfix"> </div>
+                        </ul>
+                      </div>
+                  </div> 
+                  <i class="b_home"></i>
+   				  <div class="inner_wrap2">
+					  <form method="post" action="/rooms_display" name="form_to_post">
+   				 	<h3>酒店想您所想</h3>
+   				 	<ul class="star1">
+   				 	  <h4 class="green">诺亚方舟酒店</h4>
+						<button type="submit" style="float: right;background-color: orange;color: #FFFFFF;-webkit-border-radius: 4px;-moz-border-radius: 4px;display: inline-block">详情</button>
+   				 	  <li><a href="#"> <img src="../static/img/star1.png" alt="">(236)</a></li>
+   				 	</ul>
+						  <input name="hotel_id" value="000002" hidden="hidden"/>
+					  </form>
+   				  </div>
+   			   </div>
+   			</div>
+   			<div class="col-md-3 index-grids">
+   			  <div class="grid1">
+   				<div class="view view-first">
+                  <div class="index_img1"><img src="../static/img/pic2.jpg" class="img-responsive" alt=""/></div>
+   				     <div class="mask">
+                        <div class="info"><i class="search"> </i> 展示更多信息</div>
+                        <ul class="mask_img">
+                        	<li class="star"><img src="../static/img/star.png" alt=""/></li>
+                        	<li class="set"><img src="../static/img/set.png" alt=""/></li>
+                        	<div class="clearfix"> </div>
+                        </ul>
+                      </div>
+                  </div> 
+                 <i class="b_home1"> </i>
+   				 <div class="inner_wrap2">
+					 <form method="post" action="/rooms_display" name="form_to_post">
+   				 	<h3>客房内饰优雅</h3>
+   				 	<ul class="star1">
+   				 	  <h4 class="yellow">锦江之星酒店</h4>
+						<button type="submit" style="float: right;background-color: orange;color: #FFFFFF;-webkit-border-radius: 4px;-moz-border-radius: 4px;display: inline-block">详情</button>
+   				 	  <li><a href="#"> <img src="../static/img/star2.png" alt="">(136)</a></li>
+   				 	</ul>
+						 <input name="hotel_id" value="000007" hidden="hidden"/>
+					 </form>
+   				 </div>
+   			   </div>
+   			</div>
+   			<div class="clearfix"></div>
+   			</div>
+   		  </div>
+   		  <div class="offering">
+   		  	  <h2>What can Hotel Deluxe offer to you ?</h2>
+   		  	  <h3>Ut wisi enim ad minim veniam, quis</h3>
+   		  	  <ul class="icons wow fadeInUp" data-wow-delay="0.4s">
+   		  	  	 <li><i class="icon1"> </i><span class="one"> </span></li>
+   		  	  	 <li><i class="icon2"> </i><span class="two"> </span></li>
+   		  	  	 <li><i class="icon3"> </i><span class="three"> </span></li>
+   		  	  	 <li><i class="icon4"> </i><span class="four"> </span></li>
+   		  	  	 <li><i class="icon5"> </i></li>
+   		  	  </ul>
+   		  	  <div class="real">
+   		  	  	<h4>Reality</h4>
+   		  	  	<div class="col-sm-6">
+   		  	  	  <ul class="service_grid">
+   	   				<i class="s1"> </i>
+   	   				 <li class="desc1 wow fadeInRight" data-wow-delay="0.4s">
+   	   				   <p>Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod maxim placerat facer possim assum. Typi non habent claritatem insitam; est usus legentis in iis qui facit eorum</p>
+   	   				 </li>
+   	   				 <div class="clearfix"> </div>
+   	   			   </ul>
+   	   			 </div>
+   	   			 <div class="col-sm-6">
+   		  	  	  <ul class="service_grid">
+   	   				<i class="s2"> </i>
+   	   				 <li class="desc1 wow fadeInRight" data-wow-delay="0.4s">
+   	   				   <p>Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod maxim placerat facer possim assum. Typi non habent claritatem insitam; est usus legentis in iis qui facit eorum</p>
+   	   				 </li>
+   	   				 <div class="clearfix"> </div>
+   	   			   </ul>
+   	   			 </div>
+   	   			 <div class="clearfix"> </div>
+   	   			 </div>
+   		  	  </div>
+   		  </div>
+   	  </div>
+   </div>
+   <div class="footer">
+   	<div class="container">
+   	 <div class="footer_top">
+   	   <h3>订阅我们的资讯</h3>
+   	   <form>
+		<span>
+			<i><img src="../static/img/mail.png" alt=""></i>
+		    <input type="text" value="Enter your email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Enter your email';}">
+		    <label class="btn1 btn2 btn-2 btn-2g"> <input name="submit" type="submit" id="submit" value="Subscribe"> </label>
+		    <div class="clearfix"> </div>
+		</span>			 	    
+	   </form>
+	  </div>
+	  <div class="footer_grids">
+	     <div class="footer-grid">
+			<h4>Ipsum Quis</h4>
+			<ul class="list1">
+				<li><a href="contact.html">Contact</a></li>
+				<li><a href="#">Mirum est</a></li>
+				<li><a href="#">Placerat facer</a></li>
+				<li><a href="#">Claritatem</a></li>
+				<li><a href="#">Sollemnes </a></li>
+			</ul>
+		  </div>
+		  <div class="footer-grid">
+			<h4>Quis Ipsum</h4>
+			<ul class="list1">
+				<li><a href="#">Placerat facer</a></li>
+				<li><a href="#">Claritatem</a></li>
+				<li><a href="#">Sollemnes </a></li>
+				<li><a href="#">Claritas</a></li>
+				<li><a href="#">Mirum est</a></li>
+			</ul>
+		  </div>
+		  <div class="footer-grid last_grid">
+			<h4>Follow Us</h4>
+			<ul class="footer_social wow fadeInLeft" data-wow-delay="0.4s">
+			  <li><a href=""> <i class="fb"> </i> </a></li>
+			  <li><a href=""><i class="tw"> </i> </a></li>
+			  <li><a href=""><i class="google"> </i> </a></li>
+			  <li><a href=""><i class="u_tube"> </i> </a></li>
+		 	</ul>
+		 	<div class="copy wow fadeInRight" data-wow-delay="0.4s">
+	        </div>
+		  </div>
+		  <div class="clearfix"> </div>
+	   </div>
+      </div>
+   </div>
+</body>
+<script>
+	Date.prototype.toDateInputValue = (function() {
+		var local = new Date(this);
+		local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
+		return local.toJSON().slice(0,10);
+	});
+
+	$(document).ready(function () {
+		$('#checkinDate').val(new Date().toDateInputValue());
+		$('#checkinDate').attr("min", new Date().toDateInputValue())
+
+		$("#checkoutDate").change(function () {
+			var checkInDate = $('#checkinDate').val();
+			var checkoutDate = $(this).val();
+
+			if(checkInDate >= checkoutDate) {
+				alert("退房日期不能早于入住日期");
+				$(this).val('');
+			}
+		})
+	})
+</script>
+</html>		

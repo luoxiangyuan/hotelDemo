@@ -1,0 +1,165 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+    <!--<meta charset="UTF-8">-->
+    <!--<title>Title</title>-->
+<!--</head>-->
+<!--<body>-->
+
+<!--</body>-->
+<!--</html>-->
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>jQuery UI 放置（Droppable） - 购物车演示</title>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+    <script src="//code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+    <link rel="stylesheet" href="http://jqueryui.com/resources/demos/style.css">
+    <style>
+        h1 { padding: .2em; margin: 0; }
+        #products { float:left; width: 500px; margin-right: 2em; }
+        #cart { width: 200px; float: left; margin-top: 1em; }
+        /* 定义列表样式，以便最大化 droppable */
+        #cart ol { margin: 0; padding: 1em 0 1em 3em; }
+    </style>
+    <script>
+        $(function() {
+            $( "#catalog" ).accordion();
+            $( "#catalog li" ).draggable({
+                appendTo: "body",
+                helper: "clone"
+            });
+            $( "#cart ol" ).droppable({
+                activeClass: "ui-state-default",
+                hoverClass: "ui-state-hover",
+                accept: ":not(.ui-sortable-helper)",
+                drop: function( event, ui ) {
+                    $( this ).find( ".placeholder" ).remove();
+                    $( "<li></li>" ).text( ui.draggable.text() ).appendTo( this );
+                }
+            }).sortable({
+                items: "li:not(.placeholder)",
+                sort: function() {
+                    // 获取由 droppable 与 sortable 交互而加入的条目
+                    // 使用 connectWithSortable 可以解决这个问题，但不允许您自定义 active/hoverClass 选项
+                    $( this ).removeClass( "ui-state-default" );
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+
+<div id="products">
+    <h1 class="ui-widget-header">产品</h1>
+    <div id="catalog">
+        <h2><a href="#">T-Shirts</a></h2>
+        <div>
+            <ul>
+                <li>Lolcat Shirt</li>
+                <li>Cheezeburger Shirt</li>
+                <li>Buckit Shirt</li>
+            </ul>
+        </div>
+        <h2><a href="#">Bags</a></h2>
+        <div>
+            <ul>
+                <li>Zebra Striped</li>
+                <li>Black Leather</li>
+                <li>Alligator Leather</li>
+            </ul>
+        </div>
+        <h2><a href="#">Gadgets</a></h2>
+        <div>
+            <ul>
+                <li>iPhone</li>
+                <li>iPod</li>
+                <li>iPad</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div id="cart">
+    <h1 class="ui-widget-header">购物车</h1>
+    <div class="ui-widget-content">
+        <ol>
+            <li class="placeholder">添加产品到这里</li>
+        </ol>
+    </div>
+</div>
+
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style type="text/css">
+        *{margin: 0;padding: 0;}
+        #div1{width: 160px; height: 320px; background: #fff; /*border: 1px solid red;*/position: relative;left:-140px;top:100px;}
+        #div1 .hide{width: 140px; height: 320px; background: cyan; float: left;position: absolute;left: 0;top: 0;}
+        #div1 .show{width: 17px; height: auto;background: skyblue;border: 1px solid #000;float: right; position: absolute; top: 39%;right: 0;}
+    </style>
+    <script type="text/javascript">
+        window.οnlοad=function(){
+            var oDiv=document.getElementById('div1');
+
+            var timer;
+
+            oDiv.οnmοuseοver=function(){
+//startMove(10,0);speed,end
+                startMove(0);
+
+//这里稍作优化，原来传入两个参数改为一个参数
+            };
+            oDiv.οnmοuseοut=function(){
+//startMove(-10,-140);
+                startMove(-140);
+            }
+
+            function startMove(end){
+
+                /*var oDiv=document.getElementById('div1');*/
+                clearInterval(timer);
+                timer=setInterval(function(){
+                    var speed=0;
+//从-140到0,速度为正，从0到-140，速度为负
+
+                    if(oDiv.offsetLeft>end){
+                        speed=-10;
+                    }else{
+                        speed=10;
+                    }
+                    if(oDiv.offsetLeft==end){
+                        clearInterval(timer);
+                    }else{
+                        oDiv.style.left=oDiv.offsetLeft+speed+'px';
+                    }
+
+
+                },30);
+            }
+        }
+    </script>
+</head>
+
+
+<body>
+
+<div id="div1">
+    <div class="hide">
+        <ul>
+            <li>qq</li>
+            <li>weibo</li>
+            <li>csdn</li>
+        </ul>
+    </div>
+    <div class="show">
+        <span>分享到</span>
+    </div>
+</div>
+
+
+</body>
+</body>
+</html>

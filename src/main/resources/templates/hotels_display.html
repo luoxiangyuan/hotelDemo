@@ -1,0 +1,172 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+<title>酒店信息——QQ酒店</title>
+<link href="../static/css/bootstrap.css" rel='stylesheet' type='text/css' />
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<!-- Custom Theme files -->
+<link href="../static/css/style.css" rel='stylesheet' type='text/css' />
+<!-- Custom Theme files -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Hotel Deluxe Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!--webfont-->
+<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+<script type="text/javascript" src="../static/js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="../static/js/login.js"></script>
+<script src="../static/js/jquery.easydropdown.js"></script>
+<!------ Light Box ------>
+<link rel="stylesheet" href="../static/css/swipebox.css">
+<script src="../static/js/jquery.swipebox.min.js"></script>
+    <script type="text/javascript">
+		jQuery(function($) {
+			$(".swipebox").swipebox();
+		});
+	</script>
+<!------ Eng Light Box ------>	
+<script src="../static/js/wow.min.js"></script>
+<link href="../static/css/animate.css" rel='stylesheet' type='text/css' />
+<script>
+	new WOW().init();
+</script>
+</head>
+<body>
+<div class="header">
+		   <div class="col-sm-8 header-left">
+					 <div class="logo">
+						<a href="/index"><img src="../static/img/logo.png" alt=""/></a>
+					 </div>
+					 <div class="menu">
+						  <a class="toggleMenu" href="#">
+							  <img src="../static/img/nav.png" alt="" />
+						  </a>
+						    <ul class="nav" id="nav">
+								<li class="active"><a href="/index">首页</a></li>
+								<li><a href="hotels_display.html" th:href="@{/hotels_display}">酒店信息</a></li>
+								<li><a href="/books_display/now">当前订单</a></li>
+								<li><a href="/books_display">全部订单</a></li>
+								<li><a href="/personal_info">信息管理</a></li>
+								<div class="clearfix"></div>
+							</ul>
+							<script type="text/javascript" src="../static/js/responsive-nav.js"></script>
+				    </div>
+		   </div>
+
+			<div class="col-sm-4 header_right">
+				<p th:if="${session.user_tel}"><span th:text="'Welcome,'+${session.user_name}"></span><br><a href="/logout/">退出登录</a></p>
+				<div th:if="${session.user_tel}==null" id="loginContainer"><a href="/login/" class="link"><img src="../static/img/login.png">登录</a>
+
+				</div>
+	                <div class="clearfix"></div>
+			</div>
+
+</div>
+
+
+
+<div class="row">
+	<div class="col-md-12">
+<!--酒店信息展示-->
+		<div class="living_middle">
+			<div class="container" >
+				<div class="entertain_box wow fadeInLeft" data-wow-delay="0.4s" >
+
+					<div class="col-md-3 grid_box" th:each ="hotel,iterStat:${HotelList}">
+
+						<a href="../static/img/abc123.jpg" th:href="@{${hotel.hotel_img_url}}" class="swipebox"  title="点击查看大图">
+							<img src="../static/img/abc123.jpg" th:src="@{${hotel.hotel_img_url}}" class="img-responsive" alt="">
+							<span class="zoom-icon"></span>
+						</a>
+						<div class="grid_box2">
+							<form method="post" action="/rooms_display">
+								<h4><a th:text="${hotel.hotel_name}" ></a></h4>
+								<div style=" margin:auto; width:100%;height: 20px;border:solid 0px #000000;glyph-orientation-horizontal: true">
+									<span th:text="${hotel.hotel_address}" style="width: 50%;height: 30px;border: solid 0px orange;float: left;margin-left: 1%"></span>
+									<button type="submit" style="float: right;background-color: orange;color: #FFFFFF;-webkit-border-radius: 4px;-moz-border-radius: 4px;display: inline-block">详情</button>
+
+								</div>
+								<input name="hotel_id" th:value="${hotel.hotel_id}" hidden="hidden"/>
+							</form>
+						</div>
+						<h2 th:text="${iterStat.index}+1"></h2>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+	</div>
+</div>
+
+
+<div class="living_bottom">
+   	  <div class="container">
+   	  	<h2 class="title block-title">Latest Posts</h2>
+   	  	<div class="col-md-6 post_left wow fadeInLeft" data-wow-delay="0.4s">
+   	  		<div class="mask1"><img src="../static/img/pic4.jpg" alt="image" class="img-responsive zoom-img" /></div>
+   	  	    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque cursus, sem eget sagittis sagittis, nisl magna sodales eros, ut feugiat velit velit non turpis. Cras eu nibh dapibus justo fringilla   <a href="single.html">More</a></p>
+   	  	    <div class="divider"></div>
+   	  	    <p class="field-content">30 Sep 2015</span></p>
+   	  	</div>
+   	  	<div class="col-md-6 post_left wow fadeInRight" data-wow-delay="0.4s">
+   	  		<div class="mask1"><img src="../static/img/pic5.jpg" alt="image" class="img-responsive zoom-img" /></div>
+   	  	    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque cursus, sem eget sagittis sagittis, nisl magna sodales eros, ut feugiat velit velit non turpis. Cras eu nibh dapibus justo fringilla   <a href="single.html">More</a></p>
+   	  	    <div class="divider"></div>
+   	  	    <p class="field-content">30 Sep 2015</span></p>
+   	  	</div>
+   	  </div>
+</div>
+<div class="footer">
+   	<div class="container">
+   	 <div class="footer_top">
+   	   <h3>订阅我们的资讯</h3>
+   	   <form>
+		<span>
+			<i><img src="../static/img/mail.png" alt=""></i>
+		    <input type="text" value="Enter your email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Enter your email';}">
+		    <label class="btn1 btn2 btn-2 btn-2g"> <input name="submit" type="submit" id="submit" value="Subscribe"> </label>
+		    <div class="clearfix"> </div>
+		</span>			 	    
+	   </form>
+	  </div>
+	  <div class="footer_grids">
+	     <div class="footer-grid">
+			<h4>Ipsum Quis</h4>
+			<ul class="list1">
+				<li><a href="contact.html">Contact</a></li>
+				<li><a href="#">Mirum est</a></li>
+				<li><a href="#">Placerat facer</a></li>
+				<li><a href="#">Claritatem</a></li>
+				<li><a href="#">Sollemnes </a></li>
+			</ul>
+		  </div>
+		  <div class="footer-grid">
+			<h4>Quis Ipsum</h4>
+			<ul class="list1">
+				<li><a href="#">Placerat facer</a></li>
+				<li><a href="#">Claritatem</a></li>
+				<li><a href="#">Sollemnes </a></li>
+				<li><a href="#">Claritas</a></li>
+				<li><a href="#">Mirum est</a></li>
+			</ul>
+		  </div>
+		  <div class="footer-grid last_grid">
+			<h4>Follow Us</h4>
+			<ul class="footer_social wow fadeInLeft" data-wow-delay="0.4s">
+			  <li><a href=""> <i class="fb"> </i> </a></li>
+			  <li><a href=""><i class="tw"> </i> </a></li>
+			  <li><a href=""><i class="google"> </i> </a></li>
+			  <li><a href=""><i class="u_tube"> </i> </a></li>
+		 	</ul>
+		 	<div class="copy wow fadeInRight" data-wow-delay="0.4s">
+              <!--<p>Copyright &copy; 2016.Company name All rights reserved.More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></p>-->
+	        </div>
+		  </div>
+		  <div class="clearfix"> </div>
+	   </div>
+      </div>
+</div>
+</body>
+</html>		
